@@ -1,7 +1,5 @@
 # Introduction to Django
 
-## Video : Introduction to Docker and Containers 
-
 
 Django is a Python framework that makes it easier to create web sites using Python.
 Django emphasizes reusability of components and comes with ready-to-use features like login system, database connection and CRUD operations (Create Read Update Delete)
@@ -49,7 +47,7 @@ Django follows the MVT design pattern (Model View Template).
 3. The models are imported from the models.py file.
 4. The view then sends the data to a specified template in the template folder.
 5. The template contains HTML and Django tags, and with the data it returns finished HTML content back to the browser.
-![Django Workflow](gitflow.png)
+![Django Workflow](django-mvt-based-control-flow.png)
 
    
 > Explore here: [https://www.w3schools.com/django/django_intro.php](https://www.w3schools.com/django/django_intro.php)
