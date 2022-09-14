@@ -47,6 +47,8 @@ Django follows the MVT design pattern (Model View Template).
 3. The models are imported from the models.py file.
 4. The view then sends the data to a specified template in the template folder.
 5. The template contains HTML and Django tags, and with the data it returns finished HTML content back to the browser.
+
+
 ![Django Workflow](django-mvt-based-control-flow.png)
 
    
