@@ -8,7 +8,7 @@ python -m pip install Django
 ```
 <br />
 
-###Check your Django version
+### Check your Django version
 
 ```buildoutcfg
 django-admin --version
@@ -16,7 +16,7 @@ django-admin --version
 
 If you are able to see the version it's clear that Django is installed in your system.
 
-###Creating the first Django project
+### Creating the first Django project
 - Select a suitable name for your project. For eg: myworld
 - Run the below command to create the first project
 
@@ -254,112 +254,88 @@ python manage.py runserver
 
 Refresh the browser and now you should be able to see the template content in your webpage.
       
+# Models
 
-## Docker post-installation setup
-Do the optional procedure configuration to work better with Docker.
+- A Django model is a table in your database.
+- When we created the Django project, we got an empty SQLite database. It was created in the myworld root folder.
+- To learn models we will use that database for now.
 
-### Run Docker as non-root user
-To create the docker group and add your user:
-1. Create the docker group.
-```
-sudo groupadd docker
-```
-2. Add your user to the docker group.
-```
-sudo usermod -aG docker $USER
-```
+## Creating a Table/Model
+- To create a new table, we must create a new model.
+- Open the models.py file in the members folder. By default it will have just a import statement and a comment.
+- To add a Members table in our database, start by creating a Members class, and describe the table fields in it:
+- Add the below lines of code in models.py file.
+```buildoutcfg
+from django.db import models
 
-3. Activate the changes to groups:
-```
-newgrp docker 
-```
-4. Verify that you can run docker commands without sudo.
-```
-docker images
+class Members(models.Model):
+  firstname = models.CharField(max_length=255)
+  lastname = models.CharField(max_length=255)
 ```
 
-<br />
+- The first field, "firstname" is a Text field, and will contain the first name of the members.
+- The second field, "lastname" is also a Text field, with the members' last name.
+- Both "firstname" and "lastname" is set up to have a maximum of 255 characters.
 
-## Docker Commands
-Docker is a containerization system which packages and runs the application with its dependencies inside a container. There are several docker commands you must know when working with Docker.
-### 1. Docker version
-To find the installed docker version
-Command:
-```
-docker  --version
-```
-##### **_Docker version 20.10.12, build e91ed57_**
+In order to create database and tables out of this model we need to do the following steps.
 
+1. Navigate to myworld folder where manage.py file is present and run the below command.
+```buildoutcfg
+python manage.py makemigrations members
+```
+This will result in following output.
+      
+    Migrations for 'members':
+    members\migrations\0001_initial.py
+      - Create model Members
+- Django creates a file with any new changes and stores the file in the /migrations/ folder inside the members folder.
+- Now run the below command, in the folder where manage.py is present, to run the migration and create the tables out of the model.
+```buildoutcfg
+python manage.py migrate
+```
+This will result in following output:
 
-<br>
+    Operations to perform:
+      Apply all migrations: admin, auth, contenttypes, members, sessions
+    Running migrations:
+      Applying members.0001_initial... OK
 
-### 2. Downloading image
-To work with any ocker image we need to download the docker image first.<br /> 
-Command:
-```
-docker pull <IMAGE>
-```
-Example of pulling alpine:latest image
-```
-docker pull alpine:latest
-```
- _Note: You may find 1000s of docker images in [Docker Hub](https://hub.docker.com/)_ 
+Now the Members table would have created in your database.
 
-<br>
+# Django Admin Site
 
-### 3. List all the docker images
-To list all the images that is locallt available in the host machine, simply run the below command. This will list all the docker images in the local system.
-<br />
-Command:
-```
-docker images
-```
-```
-Example:
-REPOSITORY  TAG  IMAGE ID       CREATED      SIZE
-alpine     latest  c059bfaa849c 6 weeks ago  5.59MB
-```
-<br>
+- Now that we have added the tables to our database, how do we see that table and perform the CRUD operation to it?
+- In order to do that we can use the build admin-site functionality provided by Django to the developers.
+- Following steps need to followed :
 
-### 4. Run docker image
-The docker run command first creates a writeable container layer over the specified image, and then starts it using the specified command.
-<br>
-Command:
-```
-docker run [options] <IMAGE>
-```
-> Explore here: [https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
+1. Open the admin.py file in the members folder and add the below lines of code
+```buildoutcfg
+from django.contrib import admin
+from .models import Members
 
+class PersonAdmin(admin.ModelAdmin):
+    list_display = ('firstname', 'lastname')
 
-Example of running alpine:latest image, the options -t allows us to access the terminal and -i gets stdin stream added. Basicaly using -ti adds the terminal driver.
+admin.site.register(Members,PersonAdmin)
+# Register your models here.
 ```
-docker run -t -i alpine:latest
-```
-OR
-```
-docker run -ti alpine:latest
-```
-_Note: You can use Ctrl+D to come out from the docker image._
+This will register our models to the admin-site.
 
-<br />
+2. Create a user that's able to access this dashboard and use it. Run the below command in the folder where manage.py file is present to create the superuser.
+```buildoutcfg
+python manage.py createsuperuser
+```
+- This will prompt us to enter username, email address and password. You can add your own username and password. email address can be left blank
+- If the user is created it will show the below output.
 
-## Create docker image for python:3.10.2-alpine3.15
-   
-Create a new file called _**Dockerfile**_ and then paste the below content
+      Username (leave blank to use 'xxx'): admin
+      Email address:
+      Password:
+      Password (again):
+      Superuser created successfully.
+3. Now start the server again if it is not running by going to the /myworld folder and execute this command:
+```buildoutcfg
+python manage.py runserver
 ```
-FROM python:3.10.2-alpine3.15
-# Create directories  
-RUN mkdir -p /root/workspace/src
-# Switch to project directory
-WORKDIR /root/workspace/src
-```
-Goto the directory where you created **Dockerfile**
-```
-docker build ./ -t simple_python
-```
-You may check the image you created using `docker images` command
-
-Run the _**simple_python**_ image you created 
-```
-docket run -ti simple_python
-```
+4. Now refresh your webpage. Now you will be able to see a login page. Add your credentials and login. This will show you the database. 
+Currently it is empty. You may use the options present in the admin-site to perform the CRUD operation
