@@ -13,7 +13,7 @@ independent units or chunks and tested one by one.
 
 #### In the homework of the previous workshop you were supposed to do the following:
 1. Write a Python program to Scrape the pages from Python Blogs.
-2. save the data into the DB.
+2. Save the data into the DB.
 3. Dockerize the project.
 
 Now that we know Django, let us add an additional step of displaying the data on a Django app.
@@ -61,26 +61,26 @@ cat event_logs.txt
 
 Essentially we are testing two of our ReST APIs.
 
-We expect the status code of the response as 200, because the status code 200 for a ReST API means SUCCESS. You may be familiar with another popular status code:
+We expect the status code of the response as 200, because the status code 200 for a ReST API means <b>SUCCESS</b>. You may be familiar with another popular status code:
 ####
 ![unit test](meme.jpeg)
 
 ###
 
-The unittest_api.py is written using Python's unittest module.
+The unittest_api.py is implemented using Python's unittest module.
 
 The Python's `unittest`module is used for test automation which eliminate the disadvantages No. 1 and 3 mentioned above.
 We have to inherit the `TestCase` class from the `unittest` module to implement unit tests using this module.
 
-Refer: [Official Documentation](https://docs.python.org/3/library/unittest.html)
+Read More: [Official Documentation](https://docs.python.org/3/library/unittest.html)
 
 The `assertEqual` is used to identify whether the output we got is equal to what we expect.
 
-e.g. In our code, we exopect SUCCESS as response for our ReST APIs, hence we use
+e.g. In our code, we expect **SUCCESS** as response for our ReST APIs, hence we use:
 ```
 self.assertEqual(result.status_code, 200)
 ```
 Also, if our request does not give any response, then it means the test has failed.
 ```
-assertNotEqual
+self.assertNotEqual(result, None)
 ```
