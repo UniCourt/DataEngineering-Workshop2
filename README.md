@@ -16,6 +16,6 @@ One Day workshop on understanding Django, RESTful APIs and creating Unit Testing
 | 12:00 - 01:00 |  [`Updating the existing Dockerfiles to support Django Admin`](/docs/dockerizing_project.md)
 | 01:00 - 02:00 |  `Break`
 | 02:00 - 03:00 |  [`Introduction to RESTful APIs`](/docs/introduction_to_restful_api.md)
-| 03:00 - 04:30 |  [`Creating Unit Tests`](/docs/creating_unit_tests.md)
+| 03:00 - 04:30 |  [`Creating Unit Tests`](/docs/unit_test/creating_unit_tests.md)
 | 04:30 - 04:45 |  `Q & A`
 | 04:45 - 05:00 |  [`Wrapping Up`](/docs/workshop2_home_work.md)
