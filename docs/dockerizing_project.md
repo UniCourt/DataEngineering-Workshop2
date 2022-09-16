@@ -9,7 +9,7 @@
    
 3. Get inside the folder and create a file called Dockerfile
 
-        vi Dockefile
+        vi Dockerfile
 4. Add the below content to that file
       
         FROM python:3.10.2-alpine3.15
@@ -39,7 +39,7 @@
            ports:
             - "8000:8000"
            volumes:
-            - .:/app
+            - .:/root/workspace/site
 
 9. Go to the root folder of the project where the docker-compose file is present and bring the containers up
     
@@ -104,6 +104,8 @@
             - POSTGRES_PASSWORD=123456
           ports:
             - '5446:5432'
+          volumes:
+            - db:/var/lib/postgresql/data
   
         volumes:
           db:
@@ -126,7 +128,7 @@
         psql -U postrges
 - Once we are logged into postgres we can run the sql command to create the database. Let us create a database called `memeber_db`
 
-        CREATE DATABASE memeber_db;
+        CREATE DATABASE member_db;
 - Adding the tables to this database can be done using the django models
 
 ## Adding tables using Django models
@@ -188,7 +190,7 @@ docker-compose up --buld -d
 ```
 4. This should build the images and bring both the containers up. Now exec into the workshop_web_container container and run the command to run migrations and create the tables from our model Members
 ```buildoutcfg
-python manage.py makemigration
+python manage.py makemigrations
 python manage.py migrate
 ```
 5. This should have created the table in the member_db database. To check that, open a new tab in your terminal and go inside the porject folder and exec into the database server

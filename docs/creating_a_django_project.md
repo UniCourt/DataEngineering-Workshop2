@@ -68,7 +68,6 @@ python manage.py runserver
 
 #### Create App
 - Let the name of the App be Members.
-- If you are still running the server  
 - Go the project folder and run the below command.
 ```buildoutcfg
 python manage.py startapp members
