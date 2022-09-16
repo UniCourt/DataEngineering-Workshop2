@@ -36,7 +36,7 @@ Django creates a myworld folder inside the current folder, with this content:
             wsgi.py
 - You can get inside the project folder and run ls command to list down the files and folders inside the project created.
 
-###Run the Django Project
+### Run the Django Project
 - Once the project is created we can run the project and check if they are created properly.
 - Run the below command inside the project folder 
 ```buildoutcfg
@@ -337,5 +337,5 @@ python manage.py createsuperuser
 ```buildoutcfg
 python manage.py runserver
 ```
-4. Now refresh your webpage. Now you will be able to see a login page. Add your credentials and login. This will show you the database. 
+4. Type http://127.0.0.1:8000/admin/ in your web browser. Now you will be able to see a login page. Add your credentials and login. This will show you the database. 
 Currently it is empty. You may use the options present in the admin-site to perform the CRUD operation
