@@ -31,7 +31,7 @@
          web_service:
            build:
              context: ./
-             dockerfile: ./dockerfiles/site/Dockerfile
+             dockerfile: ./dockerfiles/Dockerfile
            image: workshop1_web
            container_name: workshop_web_container
            stdin_open: true #  docker attach container_id
@@ -85,7 +85,7 @@
          web_service:
            build:
              context: ./
-             dockerfile: ./dockerfiles/site/Dockerfile
+             dockerfile: ./dockerfiles/Dockerfile
            image: workshop1_web
            container_name: workshop_web_container
            stdin_open: true #  docker attach container_id
