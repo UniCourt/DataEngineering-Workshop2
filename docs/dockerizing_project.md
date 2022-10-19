@@ -93,7 +93,7 @@
            ports:
             - "8000:8000"
            volumes:
-            - .:/app
+            - .:/root/workspace/site
          
          psql-db:
           image: 'postgres:14'
