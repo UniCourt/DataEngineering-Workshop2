@@ -18,11 +18,11 @@ class Test(unittest.TestCase):
 
     def test_get_all_students_for_branch(self):
         required = {'status': 'success',
-                    'students': [{'address': 'sdgsg',
+                    'students': [{'address': '121 Mill Neck in Long Island, NY',
                                   'branch': 'B.COM',
-                                  'first_name': 'shamith',
-                                  'last_name': 'Shetty',
-                                  'mobile': '9008809863',
+                                  'first_name': 'john',
+                                  'last_name': 'wick',
+                                  'mobile': '0000-000',
                                   'roll_number': 1}]}
 
         result = requests.get("http://0.0.0.0:8000/members/rest/student/1")
