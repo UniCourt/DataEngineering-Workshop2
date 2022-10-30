@@ -1,20 +1,25 @@
 from django.db import models
 
-BRANCH_CHOICES = (
-    ("BA", "BA"),
-    ("B.COM", "B.COM"),
-    ("MBA", "MBA"),
-    ("CA", "CA"),
+class Members(models.Model):
+  firstname = models.CharField(max_length=255)
+  lastname = models.CharField(max_length=255)
+
+DEPARTMENT_CHOICES = (
+    ("HR", "HR"),
+    ("IT", "IT"),
+    ("AI", "AI"),
+    ("RD", "RD"),
 )
 
 # Create your models here.
-class Students(models.Model):
+class Employees(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
-    roll_number = models.IntegerField()
+    employee_id = models.IntegerField()
     mobile = models.CharField(max_length=10)
-    branch = models.CharField(max_length=10, choices=BRANCH_CHOICES)
+    salary = models.IntegerField()
+    department = models.CharField(max_length=10, choices=DEPARTMENT_CHOICES)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
