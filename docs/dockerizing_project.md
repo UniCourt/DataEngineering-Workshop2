@@ -186,7 +186,7 @@
 3. Once the changes are made build the container again by running the below command
 
 ```buildoutcfg
-docker-compose up --buld -d
+docker-compose up --build -d
 ```
 4. This should build the images and bring both the containers up. Now exec into the workshop_web_container container and run the command to run migrations and create the tables from our model Members
 ```buildoutcfg
