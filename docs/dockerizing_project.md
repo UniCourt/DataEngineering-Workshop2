@@ -125,7 +125,7 @@
         docker exec -it psql-db sh
 - Now we need to login to postgres
     
-        psql -U postrges
+        psql -U postgres
 - Once we are logged into postgres we can run the sql command to create the database. Let us create a database called `memeber_db`
 
         CREATE DATABASE member_db;
