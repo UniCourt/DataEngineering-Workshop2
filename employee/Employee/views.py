@@ -48,3 +48,20 @@ class EmployeeView(View):
     		return JsonResponse({'status': 'Success', "message" : "Employee Data Deleted"}, status=200) 
     	except Employees.DoesNotExist:
     		return JsonResponse({'status': 'Failure', "message" : "Employee ID Not Found"}, status=400) 
+            
+    def update (self, request, emp_id=None):
+        try:
+            employee = Employees.objects.get(emp_id=emp_id)
+        except Employees.DoesNotExist:
+            return JsonResponse({'status': 'Failure', 'message': 'Employee not found'}, status=400)
+
+        if request.POST.get('salary'):
+            employee.salary = request.POST.get('salary')
+            employee.save()
+
+            return JsonResponse({'status': 'Success', 'message': 'Employee salary updated'}, status=200)
+
+        return JsonResponse({'status': 'Failure', 'message': 'Please provide a new salary'}, status=400)
+
+            
+            
