@@ -23,12 +23,13 @@ class EmployeeView(View):
                     "first_name" : employee.first_name,
                     "last_name": employee.last_name,
                     "address": employee.address,
-                    "roll_number": employee.emp_id,
-                    "mobile": employee.salary,
-                    "branch": employee.department
+                    "emp_id": employee.emp_id,
+                    "salary": employee.salary,
+                    "department": employee.department
                 }
             employees.append(data)
             return JsonResponse({'status': 'success', "employees": employees}, status=200)
+    @csrf_exempt
     def post(self, request):
         if not request.POST.get('first_name') or not request.POST.get('last_name') or not request.POST.get('address') or  not request.POST.get('emp_id') or not request.POST.get('salary'):
             return JsonResponse({'status': 'failed', "message" : "all fields required"}, status=500)
