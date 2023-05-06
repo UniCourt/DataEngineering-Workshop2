@@ -1,14 +1,13 @@
+from django.shortcuts import render
 from django.views import View
 from .models import Employees
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-import pdb
 
 @method_decorator(csrf_exempt, name='dispatch')
 class EmployeeView(View):
     def get(self, request, empid=None, department=None):
-        pdb.set_trace()
         employee_model_list = []
         try:
             if empid:
@@ -29,7 +28,7 @@ class EmployeeView(View):
                 }
             employees.append(data)
             return JsonResponse({'status': 'success', "employees": employees}, status=200)
-    @csrf_exempt
+    
     def post(self, request):
         if not request.POST.get('first_name') or not request.POST.get('last_name') or not request.POST.get('address') or  not request.POST.get('emp_id') or not request.POST.get('salary'):
             return JsonResponse({'status': 'failed', "message" : "all fields required"}, status=500)
@@ -40,5 +39,26 @@ class EmployeeView(View):
             salary= request.POST.get('salary'),
             department= request.POST.get('department'))
         return JsonResponse({'status': 'sucess'}, status=200)
-
-    
+    def update(self,request,empid=None):
+        try:
+            employee = Employees.objects.get(emp_id=empid)
+        except Employees.DoesNotExist:
+            return JsonResponse({'status': 'failed', "employees": None}, status=400)
+        if request.POST.get('salary'):
+            employee.salary=request.POST.get('salary');
+            employee.save()
+            return JsonResponse({'status': 'success', "message" : "updated salary"}, status=200)
+        return JsonResponse({'status': 'failed', "message" : "new salary required"}, status=400)
+    def delete(self,request,empid=None):
+        try:
+            ob= Employees.objects.get(emp_id=empid)
+            ob.delete()
+            return JsonResponse({'status': 'success', "message" : "deleted data"}, status=200)
+        except Employees.DoesNotExist:
+            return JsonResponse({'status': 'failed', "message" : "ID not found"}, status=400)
+            
+            
+            
+            
+            
+            
