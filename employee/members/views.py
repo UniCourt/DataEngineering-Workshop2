@@ -25,21 +25,21 @@ class EmployeeView(View):
                 employee_model_list = Employees.objects.filter(employee_id=employee_id)
         
           except Employees.DoesNotExist:
-             return JsonResponse({'status': 'failed', "employees": None}, status=400)
-          students = []
-          for student in employee_model_list:
+             return JsonResponse({'status': 'failed', "message": "Enter the employee id"}, status=400)
+          employees = []
+          for emp in employee_model_list:
                data = {
-                   "first_name" : student.first_name,
-                   "last_name": student.last_name,
-                   "employee_salary": student.employee_salary,
-                   "employee_id": student.employee_id,
-                   "mobile": student.mobile
+                   "first_name" : emp.first_name,
+                   "last_name": emp.last_name,
+                   "employee_salary": emp.employee_salary,
+                   "employee_id": emp.employee_id,
+                   "mobile": emp.mobile
                 }
-               students.append(data)
-          if len(students)==0:
-              return JsonResponse({'status': 'failed', "employees": None}, status=400)
+               employees.append(data)
+          if len(employees)==0:
+              return JsonResponse({'status': 'failed', "message": "No such Employee exist"}, status=400)
           else:
-              return JsonResponse({'status': 'success', "employees": students}, status=200)
+              return JsonResponse({'status': 'success', "employees": employees}, status=200)
 
      def post(self, request):
           if not request.POST.get('first_name') or not request.POST.get('last_name') or not request.POST.get('employee_salary') or  not request.POST.get('employee_id') or not request.POST.get('mobile'):
@@ -58,15 +58,15 @@ class EmployeeView(View):
           
           try:
               data = json.loads(request.body)
-              employee_id=data['employee_id']
+              employee_id=data.get('employee_id',None)
               emp = Employees.objects.get(employee_id=employee_id)
            
           except Employees.DoesNotExist:
-              return JsonResponse({'status': 'failed', "employees": None}, status=400)
+              return JsonResponse({'status': 'failed', "message": "No such Employee exist"}, status=400)
           try:
                     data=json.loads(request.body)
           except json.JSONDecodeError:
-                    return JsonResponse({'status': 'failed', "message" : "invalid"}, status=400)
+                    return JsonResponse({'status': 'failed', "message" : "invalid request"}, status=400)
               
           salary=data.get('employee_salary')
           if salary is not None:
