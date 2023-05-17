@@ -16,7 +16,7 @@ class EmployeeView(View):
             elif dept:
                 employee_model_list = Employees.objects.filter(dept=dept)
         except Employees.DoesNotExist:
-            return JsonResponse({'status': 'failed', "employees": None}, status=400)
+            return JsonResponse({'status': 'failed', "message": "Employee NOT FOUND! Enter a valid employee id"}, status=400)
         employees = []
         for employee in employee_model_list:
             data = {
@@ -51,3 +51,22 @@ class EmployeeView(View):
     		    return JsonResponse({'status': 'success', "message" : "Successfully Deleted"}, status=200) 
     	    except Employees.DoesNotExist:
     		    return JsonResponse({'status': 'failed', "message" : "Employee NOT FOUND!"}, status=400)
+    
+    def put(self, request, emp_id=None):
+		    try:
+		        e = Employees.objects.get(emp_id=emp_id)
+		    except Employees.DoesNotExist:
+		        return JsonResponse({'status': 'failed', "message": "Employee NOT FOUND!"}, status=400)
+
+		    try:
+		        data = json.loads(request.body)
+		    except json.JSONDecodeError:
+		        return JsonResponse({'status': 'failed', "message": "INVALID JSON payload"}, status=400)
+
+		    sal = data.get('salary')
+		    if sal is not None:
+		        e.salary = sal
+		        e.save()
+		        return JsonResponse({'status': 'success', "message": "Salary field Updated"}, status=200)
+		    else:
+		        return JsonResponse({'status': 'failed', "message": "New salary value required"}, status=400)
