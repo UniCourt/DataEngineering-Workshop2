@@ -1,0 +1,26 @@
+ version: "3"
+ services:
+  web_service:
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/Dockerfile
+    image: workshop1_web
+    container_name: workshop_web_container
+    stdin_open: true #  docker attach container_id
+    tty: true
+    ports:
+     - "8000:8000"
+    volumes:
+     - .:/root/workspace/site
+  psql-db:
+    image: 'postgres:14'
+    container_name: psql-db
+    environment:
+      - PGPASSWORD=123456
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+    ports:
+      - '5432:5432'
+ volumes:
+    db:
+      driver: local
