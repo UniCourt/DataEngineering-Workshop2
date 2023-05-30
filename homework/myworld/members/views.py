@@ -1,10 +1,11 @@
 ﻿#!/usr/bin/python
 # -*- coding: utf-8 -*-
 from django.views import View
-from .models import Emp
+from .models import Emp,  Blog
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from . import apps
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -65,3 +66,28 @@ class EmployeeView(View):
             )
 
         return JsonResponse({'status': 'sucess'}, status=200)
+def python_blog_scrap(request):
+   apps.start_extraction()
+   return JsonResponse({'status': 'sucess', "message" : "Extracted and populated the table."}, status=200)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class BlogView(View):
+    def post(self, request):
+        start_date = request.POST.get('start_date', None)
+        end_date = request.POST.get('end_date', None)
+
+        apps.start_extraction(start_date=start_date, end_date=end_date)
+
+        blog_model_list = Blog.objects.filter()
+
+        blogs = []
+        for blog in blog_model_list:
+            data = {
+                "Title": blog.title,
+                "Release Date": blog.release_date,
+                "Author": blog.author,
+                "Blog time": blog.blog_time
+            }
+            blogs.append(data)
+
+        return JsonResponse({'status': 'success', "students": blogs}, status=200)
