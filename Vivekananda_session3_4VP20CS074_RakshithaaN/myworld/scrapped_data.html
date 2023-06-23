@@ -1,0 +1,363 @@
+<div class="post hentry">
+<a name="5942869541440604264"></a>
+<h3 class="post-title entry-title">
+<a href="https://pythoninsider.blogspot.com/2023/06/python-3114-31012-3917-3817-3717-and.html">Python 3.11.4, 3.10.12, 3.9.17, 3.8.17, 3.7.17, and 3.12.0 beta 2 are now available</a>
+</h3>
+<div class="post-header">
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content">
+<p>Greetings! Time for another combined release of six separate versions of Python!</p>
+<h3 style="text-align: left;">
+<a class="anchor" href="https://discuss.python.org/t/python-3-11-4-3-10-12-3-9-17-3-8-17-3-7-17-and-3-12-0-beta-2-are-now-availble/27477#before-you-scroll-away-to-the-download-links-1" name="before-you-scroll-away-to-the-download-links-1"></a>Before you scroll away to the download links</h3>
+<p>Please test the 3.12 beta! Downloading it and trying it out helps us a
+ lot in ensuring Python 3.12.0 will be as polished as possible.</p>
+<p>We welcome 3.10 to the prestigious club of security-only releases. 
+It’s officially an old version of Python now! If you haven’t rewritten 
+all your <code>if:elif:else:</code>s with pattern matching yet, are you even still writing Python?</p>
+<p>At the same time, it looks like 3.7 is reaching end-of-life. Unless 
+another security release happens in June, 3.7.17 will be the final 
+release of Python 3.7. I mean, now that I typed it out for all you to 
+read, I’m sure I jinxed it. But in case I didn’t, I would like to thank 
+Ned Deily for serving as the release manager of Python 3.6 and Python 
+3.7. He was my mentor as Release Manager, and continues serving Python 
+as the provider of Mac installers for new releases. Thank you, Ned!</p>
+<p>Speaking of installers, Steve Dower used to be the sole provider of 
+Windows installers for Python releases for years now. His secret was a 
+well-automated Azure pipeline that let him build, sign, and publish 
+releases with minimal manual effort. Now he extended the power to press 
+the blue “Run pipeline” button to more members of the team. Thank you, 
+Steve! This is an important bus factor increment. In fact, the Windows 
+installers for both 3.12.0b2 and 3.11.4 were <s>made by me</s> <a href="https://dev.azure.com/Python/cpython/_build/results?buildId=129764&amp;view=results">initiated by me</a>. If there’s anything wrong with them, well, I guess that means I pressed the button wrong.</p>
+<h3 style="text-align: left;">
+<a class="anchor" href="https://discuss.python.org/t/python-3-11-4-3-10-12-3-9-17-3-8-17-3-7-17-and-3-12-0-beta-2-are-now-availble/27477#security-fixes-in-todays-releases-2" name="security-fixes-in-todays-releases-2"></a>Security fixes in today’s releases</h3>
+<p>Updating is recommended due to security content:</p>
+<ul><li>3.7 - 3.12: <a href="https://github.com/python/cpython/issues/103142">gh-103142</a>:
+ The version of OpenSSL used in Windows and Mac installers has been 
+upgraded to 1.1.1u to address CVE-2023-2650, CVE-2023-0465, 
+CVE-2023-0466, CVE-2023-0464, as well as CVE-2023-0286, CVE-2022-4303, 
+and CVE-2022-4303 fixed previously in 1.1.1t (gh-101727).</li><li>3.7 - 3.11: <a href="https://github.com/python/cpython/issues/102153">gh-102153</a>: <code>urllib.parse.urlsplit()</code>
+ now strips leading C0 control and space characters following the 
+specification for URLs defined by WHATWG in response to CVE-2023-24329.</li><li>3.7 - 3.11: <a href="https://github.com/python/cpython/issues/99889">gh-99889</a>: Fixed a security in flaw in <code>uu.decode()</code> that could allow for directory traversal based on the input if no <code>out_file</code> was specified.</li><li>3.7 - 3.11: <a href="https://github.com/python/cpython/issues/104049">gh-104049</a>: Do not expose the local on-disk location in directory indexes produced by <code>http.client.SimpleHTTPRequestHandler</code>.</li><li>3.7 - 3.11: <a href="https://github.com/python/cpython/issues/101283">gh-101283</a>: <code>subprocess.Popen</code> now uses a safer approach to find <code>cmd.exe</code> when launching with <code>shell=True</code>.</li><li>3.8 - 3.11: <a href="https://github.com/python/cpython/issues/103935">gh-103935</a>: <code>trace.__main__</code> now uses <code>io.open_code()</code> for files to be executed instead of raw <code>open()</code>.</li><li>3.8 - 3.11: <a href="https://github.com/python/cpython/issues/102953">gh-102953</a>: The extraction methods in <code>tarfile</code>, and <code>shutil.unpack_archive()</code>, have a new <code>filter</code> argument that allows limiting <code>tar</code> features than may be surprising or dangerous, such as creating files outside the destination directory. See <a href="https://docs.python.org/3/library/tarfile.html#extraction-filters">Extraction filters</a> for details.</li><li>3.9: <a href="https://github.com/python/cpython/issues/102126">gh-102126</a>: Fixed a deadlock at shutdown when clearing thread states if any finalizer tries to acquire the runtime head lock.</li><li>3.9: <a href="https://github.com/python/cpython/issues/100892">gh-100892</a>: Fixed a crash due to a race while iterating over thread states in clearing <code>threading.local</code>.</li></ul><h3>Python 3.12.0 beta 2</h3>
+<p>Get it here: <a class="inline-onebox" href="https://www.python.org/downloads/release/python-3120b2/" tabindex="-1">3.12.0b2</a></p>
+<p>116 new commits since 3.12.0 beta 1.</p>
+<h3>Python 3.11.4</h3>
+<p>Get it here: <a class="inline-onebox" href="https://www.python.org/downloads/release/python-3114/" tabindex="-1">3.11.4</a></p>
+<p>233 new commits.</p>
+<h3>Python 3.10.12</h3>
+<p>Get it here: <a class="inline-onebox" href="https://www.python.org/downloads/release/python-31012/" tabindex="-1">3.10.12</a></p>
+<p>Security-only release with no binaries. 20 new commits.</p>
+<h3>Python 3.9.17</h3>
+<p>Get it here: <a class="inline-onebox" href="https://www.python.org/downloads/release/python-3917/" tabindex="-1">3.9.17</a></p>
+<p>Security-only release with no binaries. 26 commits.</p>
+<h3>Python 3.8.17</h3>
+<p>Get it here: <a class="inline-onebox" href="https://www.python.org/downloads/release/python-3817/" tabindex="-1">3.8.17</a></p>
+<p>Security-only release with no binaries. 24 commits.</p>
+<h3>Python 3.7.17</h3>
+<p>Get it here as it might be <a href="https://peps.python.org/pep-0537/" tabindex="-1">the last release of 3.7 ever</a>:<br/> <a class="inline-onebox" href="https://www.python.org/downloads/release/python-3717/" tabindex="-1">3.7.17</a></p>
+<p>Security-only release with no binaries. 21 commits.</p>
+<h2>We hope you enjoy the new releases!</h2>
+<p>Thanks to all of the many volunteers who help make Python Development
+ and these releases possible! Please consider supporting our efforts by 
+volunteering yourself or through organization contributions to the <a class="inline-onebox" href="https://www.python.org/psf/" tabindex="-1">Python Software Foundation</a>.</p>
+<p>–<br/>
+Łukasz Langa <a class="mention" data-name="ambv" href="https://discuss.python.org/u/ambv" tabindex="-1">@ambv</a><br/>
+on behalf of your friendly release team,</p>
+<p>Ned Deily <a class="mention" data-name="nad" href="https://discuss.python.org/u/nad" tabindex="-1">@nad</a><br/>
+Steve Dower <a class="mention" data-name="steve.dower" href="https://discuss.python.org/u/steve.dower" tabindex="-1">@steve.dower</a><br/>
+Pablo Galindo Salgado <a class="mention" data-name="pablogsal" href="https://discuss.python.org/u/pablogsal" tabindex="-1">@pablogsal</a><br/>
+Łukasz Langa <a class="mention" data-name="ambv" href="https://discuss.python.org/u/ambv" tabindex="-1">@ambv</a><br/>
+Thomas Wouters <a class="mention" data-name="thomas" href="https://discuss.python.org/u/thomas" tabindex="-1">@thomas</a></p><p> </p>
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1"><span class="post-author vcard">
+Posted by
+<span class="fn">Łukasz Langa</span>
+</span>
+<span class="post-timestamp">
+at
+<a class="timestamp-link" href="https://pythoninsider.blogspot.com/2023/06/python-3114-31012-3917-3817-3717-and.html" rel="bookmark" title="permanent link"><abbr class="published" title="2023-06-07T02:56:00-04:00">2:56 AM</abbr></a>
+</span>
+<span class="post-comment-link">
+</span>
+<span class="post-icons">
+</span>
+<div class="post-share-buttons">
+<a class="goog-inline-block share-button sb-email" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5942869541440604264&amp;target=email" target="_blank" title="Email This"><span class="share-button-link-text">Email This</span></a><a class="goog-inline-block share-button sb-blog" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5942869541440604264&amp;target=blog" onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target="_blank" title="BlogThis!"><span class="share-button-link-text">BlogThis!</span></a><a class="goog-inline-block share-button sb-twitter" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5942869541440604264&amp;target=twitter" target="_blank" title="Share to Twitter"><span class="share-button-link-text">Share to Twitter</span></a><a class="goog-inline-block share-button sb-facebook" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5942869541440604264&amp;target=facebook" onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target="_blank" title="Share to Facebook"><span class="share-button-link-text">Share to Facebook</span></a><a class="goog-inline-block share-button sb-pinterest" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5942869541440604264&amp;target=pinterest" target="_blank" title="Share to Pinterest"><span class="share-button-link-text">Share to Pinterest</span></a>
+</div>
+</div>
+<div class="post-footer-line post-footer-line-2"><span class="post-labels">
+</span>
+</div>
+<div class="post-footer-line post-footer-line-3"><span class="post-location">
+</span>
+</div>
+</div>
+</div><div class="post hentry">
+<a name="7913376866446169743"></a>
+<h3 class="post-title entry-title">
+<a href="https://pythoninsider.blogspot.com/2023/05/python-3120-beta-1-released.html">Python 3.12.0 beta 1 released</a>
+</h3>
+<div class="post-header">
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content">
+<p>I'm pleased to announce the release of Python 3.12 beta 1 (and feature freeze for Python 3.12).</p><p><a href="https://www.python.org/downloads/release/python-3120b1/">https://www.python.org/downloads/release/python-3120b1/</a></p><h1 style="text-align: left;">This is a beta preview of Python 3.12</h1><div style="text-align: left;"><br/></div><div style="text-align: left;">Python 3.12 is still in development. This release, 3.12.0b1, is the first of four planned beta release previews of 3.12.<br/><br/></div><div style="text-align: left;">Beta release previews are intended to give the wider community the opportunity to test new features and bug fixes and to prepare their projects to support the new feature release.<br/><br/></div><div style="text-align: left;">We strongly encourage maintainers of third-party Python projects to test with 3.12 during the beta phase and report issues found to [the Python bug tracker (Issues · python/cpython · GitHub) as soon as possible. While the release is planned to be feature complete entering the beta phase, it is possible that features may be modified or, in rare cases, deleted up until the start of the release candidate phase (Monday, 2023-07-31). Our goal is to have no ABI changes after beta 4 and as few code changes as possible after 3.12.0rc1, the first release candidate. To achieve that, it will be extremely important to get as much exposure for 3.12 as possible during the beta phase.<br/><br/></div><div style="text-align: left;">Please keep in mind that this is a preview release and its use is not recommended for production environments.</div><div style="text-align: left;"><br/></div><div style="text-align: left;"><br/></div><h1 style="text-align: left;">Major new features of the 3.12 series, compared to 3.11</h1><p>Some of the new major new features and changes in Python 3.12 are:</p><p></p><ul style="text-align: left;"><li>New type annotation syntax for generic classes (<a href="https://peps.python.org/pep-0695/">PEP 695</a>).</li><li>More flexible f-string parsing, allowing many things previously disallowed (<a href="https://peps.python.org/pep-0701/">PEP 701</a>).</li><li>Even more improved error messages. More exceptions potentially caused by typos now make suggestions to the user.</li><li>Many large and small performance improvements (like <a href="https://peps.python.org/pep-0709/">PEP 709</a>).</li><li>Support for the Linux <span style="font-family: courier;">perf</span> profiler to report Python function names in traces.</li><li>The deprecated <span style="font-family: courier;">wstr</span> and <span style="font-family: courier;">wstr_length</span> members of the C implementation of unicode objects were removed, per <a href="https://peps.python.org/pep-0623/">PEP 623</a>.</li><li>In the <span style="font-family: courier;">unittest</span> module, a number of long deprecated methods and classes were removed. (They had been deprecated since Python 3.1 or 3.2).</li><li>The deprecated <span style="font-family: courier;">smtpd</span> and <span style="font-family: courier;">distutils</span> modules have been removed (see <a href="https://peps.python.org/pep-0594/">PEP 594</a> and <a href="https://peps.python.org/pep-0632/">PEP 632</a>. The <span style="font-family: courier;">setuptools</span> package (installed by default in virtualenvs and many other places) continues to provide the <span style="font-family: courier;">distutils</span> module.</li><li>A number of other old, broken and deprecated functions, classes and methods have been removed.</li><li>Invalid backslash escape sequences in strings now warn with <span style="font-family: courier;">SyntaxWarning</span> instead of <span style="font-family: courier;">DeprecationWarning</span>, making them more visible. (They will become syntax errors in the future.)</li><li>The internal representation of integers has changed in preparation for performance enhancements. (This should not affect most users as it is an internal detail, but it may cause problems for Cython-generated code.)</li><li><span style="font-size: x-small;">(Hey, fellow core developer, if a feature you find important is missing from this list, <a href="mailto:thomas@python.org">let Thomas know</a>.)</span></li></ul><p></p><p>For more details on the changes to Python 3.12, see <a href="https://docs.python.org/dev/whatsnew/3.12.html">What’s new in Python 3.12</a>. The next pre-release of Python 3.12 will be 3.12.0b2, currently scheduled for 2023-05-29.</p><p><br/></p><h1 style="text-align: left;">More resources</h1><div><br/></div><div style="text-align: left;"><a href="https://docs.python.org/3.12/">Online Documentation</a>.</div><div style="text-align: left;"><a href="https://www.python.org/dev/peps/pep-0693/">PEP 693</a>, the Python 3.12 Release Schedule.</div><div style="text-align: left;">Report bugs via <a href="https://github.com/python/cpython/issues">GitHub Issues</a>.</div><div style="text-align: left;"><a href="https://www.python.org/psf/donations/">Help fund Python and its community</a>.</div><div style="text-align: left;"><br/></div><h1 style="text-align: left;"><br/></h1><h1 style="text-align: left;">And now for something completely different</h1><p>As the first beta release marks the point at which we fork off the release branch from the main development branch, here’s a poem about forks in the road.</p><blockquote><div style="text-align: left;">Two roads diverged in a yellow wood,<br/>And sorry I could not travel both<br/>And be one traveler, long I stood<br/>And looked down one as far as I could<br/>To where it bent in the undergrowth;<br/><br/></div><div style="text-align: left;">Then took the other, as just as fair,<br/>And having perhaps the better claim,<br/>Because it was grassy and wanted wear;<br/>Though as for that the passing there<br/>Had worn them really about the same,<br/><br/></div><div style="text-align: left;">And both that morning equally lay<br/>In leaves, no step had trodden black.<br/>Oh, I kept the first for another day!<br/>Yet knowing how way leads on to way,<br/>I doubted if I should ever come back.<br/><br/></div><div style="text-align: left;">I shall be telling this with a sigh<br/>Somewhere ages and ages hence:<br/>Two roads diverged in a wood, and I —<br/>I took the one less traveled by,<br/>And that has made all the difference.</div></blockquote><div style="text-align: left;"><br/><i>The Road Not Taken</i>, by Robert Frost.</div><div style="text-align: left;"><br/></div><h1 style="text-align: left;">Enjoy the new release</h1><div style="text-align: left;"><br/></div><div style="text-align: left;">Thanks to all of the many volunteers who help make Python Development and these releases possible! Please consider supporting our efforts by volunteering yourself or through organization contributions to the Python Software Foundation.</div><div style="text-align: left;"><br/></div><div style="text-align: left;">Your release team,</div><div style="text-align: left;">Thomas Wouters</div><div style="text-align: left;">Ned Deily</div><div style="text-align: left;">Steve Dower</div>
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1"><span class="post-author vcard">
+Posted by
+<span class="fn">Thomas Wouters</span>
+</span>
+<span class="post-timestamp">
+at
+<a class="timestamp-link" href="https://pythoninsider.blogspot.com/2023/05/python-3120-beta-1-released.html" rel="bookmark" title="permanent link"><abbr class="published" title="2023-05-22T16:55:00-04:00">4:55 PM</abbr></a>
+</span>
+<span class="post-comment-link">
+</span>
+<span class="post-icons">
+</span>
+<div class="post-share-buttons">
+<a class="goog-inline-block share-button sb-email" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=7913376866446169743&amp;target=email" target="_blank" title="Email This"><span class="share-button-link-text">Email This</span></a><a class="goog-inline-block share-button sb-blog" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=7913376866446169743&amp;target=blog" onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target="_blank" title="BlogThis!"><span class="share-button-link-text">BlogThis!</span></a><a class="goog-inline-block share-button sb-twitter" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=7913376866446169743&amp;target=twitter" target="_blank" title="Share to Twitter"><span class="share-button-link-text">Share to Twitter</span></a><a class="goog-inline-block share-button sb-facebook" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=7913376866446169743&amp;target=facebook" onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target="_blank" title="Share to Facebook"><span class="share-button-link-text">Share to Facebook</span></a><a class="goog-inline-block share-button sb-pinterest" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=7913376866446169743&amp;target=pinterest" target="_blank" title="Share to Pinterest"><span class="share-button-link-text">Share to Pinterest</span></a>
+</div>
+</div>
+<div class="post-footer-line post-footer-line-2"><span class="post-labels">
+</span>
+</div>
+<div class="post-footer-line post-footer-line-3"><span class="post-location">
+</span>
+</div>
+</div>
+</div><div class="post hentry">
+<a name="469995662479257803"></a>
+<h3 class="post-title entry-title">
+<a href="https://pythoninsider.blogspot.com/2023/04/its-time-for-another-set-of-python.html">Python 3.11.3, Python 3.10.11 and 3.12.0 alpha 7 are available</a>
+</h3>
+<div class="post-header">
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content">
+<p><br/></p><p>It's time for another set of Python releases! <b>Python 3.11.3, 3.10.11 and 3.12 alpha 7 are now available.</b></p><h3 style="text-align: left;">Python 3.12.0 alpha 7</h3><p>The final alpha release of Python 3.12! The next release will be beta 1, which is also the feature freeze. Last chance to get your new features and API changes into 3.12!</p><p><a href="https://www.python.org/downloads/release/python-3120a7/">https://www.python.org/downloads/release/python-3120a7/</a></p><p><i>246 new commits since 3.12.0a6.</i></p><h3 style="text-align: left;">Python 3.11.3</h3><p>More bugfixes and security fixes for the best Python version <span style="font-size: xx-small;">(so far)</span>.</p><p><a href="https://www.python.org/downloads/release/python-3113/">https://www.python.org/downloads/release/python-3113/</a></p><p><i>167 new commits since 3.11.2</i></p><h3 style="text-align: left;">Python 3.10.11</h3><p>The final regular bugfix release for Python 3.10! It is now entering security-fix-only mode. This also means this is the last version for which we will ship Windows and macOS installers. <b>If you rely on these binary releases, it's time to upgrade to Python 3.11.</b></p><p><a href="https://www.python.org/downloads/release/python-31011/">https://www.python.org/downloads/release/python-31011/</a></p><p><i>121 new commits since 3.10.10.</i></p><h3 style="text-align: left;">We hope you enjoy the new releases!</h3><p>Thanks to all of the many volunteers who help make Python Development and these releases possible! Please consider supporting our efforts by volunteering yourself or through organization contributions to the Python Software Foundation.<br/></p><p><a href="https://www.python.org/psf/">https://www.python.org/psf/</a></p><p>From the release team,</p><p>Thomas Wouters<br/>Pablo Galindo Salgado<br/>Łukasz Langa<br/>Ned Deily<br/>Steve Dower</p><p> </p>
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1"><span class="post-author vcard">
+Posted by
+<span class="fn">Thomas Wouters</span>
+</span>
+<span class="post-timestamp">
+at
+<a class="timestamp-link" href="https://pythoninsider.blogspot.com/2023/04/its-time-for-another-set-of-python.html" rel="bookmark" title="permanent link"><abbr class="published" title="2023-04-05T08:25:00-04:00">8:25 AM</abbr></a>
+</span>
+<span class="post-comment-link">
+</span>
+<span class="post-icons">
+</span>
+<div class="post-share-buttons">
+<a class="goog-inline-block share-button sb-email" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=469995662479257803&amp;target=email" target="_blank" title="Email This"><span class="share-button-link-text">Email This</span></a><a class="goog-inline-block share-button sb-blog" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=469995662479257803&amp;target=blog" onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target="_blank" title="BlogThis!"><span class="share-button-link-text">BlogThis!</span></a><a class="goog-inline-block share-button sb-twitter" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=469995662479257803&amp;target=twitter" target="_blank" title="Share to Twitter"><span class="share-button-link-text">Share to Twitter</span></a><a class="goog-inline-block share-button sb-facebook" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=469995662479257803&amp;target=facebook" onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target="_blank" title="Share to Facebook"><span class="share-button-link-text">Share to Facebook</span></a><a class="goog-inline-block share-button sb-pinterest" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=469995662479257803&amp;target=pinterest" target="_blank" title="Share to Pinterest"><span class="share-button-link-text">Share to Pinterest</span></a>
+</div>
+</div>
+<div class="post-footer-line post-footer-line-2"><span class="post-labels">
+</span>
+</div>
+<div class="post-footer-line post-footer-line-3"><span class="post-location">
+</span>
+</div>
+</div>
+</div><div class="post hentry">
+<a name="4869539652300607236"></a>
+<h3 class="post-title entry-title">
+<a href="https://pythoninsider.blogspot.com/2023/03/python-3120-alpha-6-released.html">Python 3.12.0 alpha 6 released</a>
+</h3>
+<div class="post-header">
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content">
+<p>I'm pleased to announce the release of Python 3.12 alpha 6.</p><p><a href="https://www.python.org/downloads/release/python-3120a6/">https://www.python.org/downloads/release/python-3120a6/</a></p><div><b>This is an early developer preview of Python 3.12.</b></div><div><b><br/></b></div><h1>Major new features of the 3.12 series, compared to 3.11</h1><div><div><br/></div><div>Python 3.12 is still in development. This release, 3.12.0a6 is the sixth of seven planned alpha releases.</div><div><br/></div><div>Alpha releases are intended to make it easier to test the current state of new features and bug fixes and to test the release process.</div><div><br/></div><div>During the alpha phase, features may be added up until the start of the beta phase (2023-05-08) and, if necessary, may be modified or deleted up until the release candidate phase (2023-07-31). Please keep in mind that this is a preview release and its use is <b>not </b>recommended for production environments.</div><div><br/></div><div>Many new features for Python 3.12 are still being planned and written. Among the new major new features and changes so far:</div><div><ul><li>Even more improved error messages. More exceptions potentially caused by typos now make suggestions to the user.</li><li>Support for the Linux <span style="font-family: courier;">perf</span> profiler to report Python function names in traces.</li><li>The deprecated <span style="font-family: courier;">wstr</span> and <span style="font-family: courier;">wstr_length</span> members of the C implementation of unicode objects were removed, per <a href="https://peps.python.org/pep-0623/">PEP 623</a>.</li><li>In the <span style="font-family: courier;">unittest</span> module, a number of long deprecated methods and classes were removed. (They had been deprecated since Python 3.1 or 3.2).</li><li>The deprecated <span style="font-family: courier;">smtpd</span> and <span style="font-family: courier;">distutils</span> modules have been removed (see <a href="https://peps.python.org/pep-0594/">PEP 594</a> and <a href="https://peps.python.org/pep-0632/">PEP 632</a>). The <span style="font-family: courier;">setuptools</span> package (installed by default in virtualenvs and many other places) continues to provide the <span style="font-family: courier;">distutils</span> module.</li><li>A number of other old, broken and deprecated functions, classes and methods have been removed.</li><li></li><li>Invalid backslash escape sequences in strings now warn with SyntaxWarning instead of DeprecationWarning, making them more visible. (They will become syntax errors in the future.)</li><li>The internal representation of integers has changed in preparation for performance enhancements. (This should not affect most users as it is an internal detail, but it may cause problems for Cython-generated code.)</li><li><span style="font-size: x-small;">(Hey, <b>fellow core developer</b>, if a feature you find important is missing from this list, <a href="mailto:thomas@python.org">let Thomas know</a>.)</span></li></ul></div></div><div><div><br/></div><div>For more details on the changes in Python 3.12, see <a href="https://docs.python.org/dev/whatsnew/3.12.html">What's New In Python 3.12</a>. The next pre-release of Python 3.12 will be 3.12.0a7, currently scheduled for 2023-04-03.</div><div><br/></div><h1>More resources</h1><div><br/></div><div><ul><li><a href="https://docs.python.org/3.12/">Online Documentation</a></li><li><a href="https://www.python.org/dev/peps/pep-0693/">PEP 693</a>, the 3.12 Release Schedule</li><li>Report bugs at <a href="https://github.com/python/cpython/issues">https://github.com/python/cpython/issues</a>.</li><li><a href="https://www.python.org/psf/donations/">Help fund Python and its community</a>.</li></ul></div><div><h1><br/></h1><h1>And now for something completely different</h1></div></div><div><div><br/></div><div><div></div><blockquote><div>Let me not to the marriage of true minds</div><div>Admit impediments. Love is not love</div><div>Which alters when it alteration finds,</div><div>Or bends with the remover to remove:</div><div>O, no! it is an ever-fixed mark,</div><div>That looks on tempests and is never shaken;</div><div>It is the star to every wandering bark,</div><div>Whose worth’s unknown, although his height be taken.</div><div>Love’s not Time’s fool, though rosy lips and cheeks</div><div>Within his bending sickle’s compass come;</div><div>Love alters not with his brief hours and weeks,</div><div>But bears it out even to the edge of doom.</div><div><br/></div><div>If this be error, and upon me prov’d,</div><div>I never writ, nor no man ever lov’d.</div></blockquote><div></div><div><br/></div><div><i>Sonnet 116</i>, by William Shakespeare.</div></div></div><div><h1>Enjoy the new releases</h1><div><br/></div><div><br/></div><div>Thanks to all of the many volunteers who help make Python Development and these releases possible! Please consider supporting our efforts by volunteering yourself or through organization contributions to the Python Software Foundation.</div><div><br/></div><div><a href="https://www.python.org/psf/">https://www.python.org/psf/</a></div><div><br/></div><div>Your release team,</div><div>Thomas Wouters</div><div>Ned Deily</div><div>Steve Dower</div></div><div><br/></div><p> </p>
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1"><span class="post-author vcard">
+Posted by
+<span class="fn">Thomas Wouters</span>
+</span>
+<span class="post-timestamp">
+at
+<a class="timestamp-link" href="https://pythoninsider.blogspot.com/2023/03/python-3120-alpha-6-released.html" rel="bookmark" title="permanent link"><abbr class="published" title="2023-03-07T23:38:00-05:00">11:38 PM</abbr></a>
+</span>
+<span class="post-comment-link">
+</span>
+<span class="post-icons">
+</span>
+<div class="post-share-buttons">
+<a class="goog-inline-block share-button sb-email" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=4869539652300607236&amp;target=email" target="_blank" title="Email This"><span class="share-button-link-text">Email This</span></a><a class="goog-inline-block share-button sb-blog" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=4869539652300607236&amp;target=blog" onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target="_blank" title="BlogThis!"><span class="share-button-link-text">BlogThis!</span></a><a class="goog-inline-block share-button sb-twitter" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=4869539652300607236&amp;target=twitter" target="_blank" title="Share to Twitter"><span class="share-button-link-text">Share to Twitter</span></a><a class="goog-inline-block share-button sb-facebook" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=4869539652300607236&amp;target=facebook" onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target="_blank" title="Share to Facebook"><span class="share-button-link-text">Share to Facebook</span></a><a class="goog-inline-block share-button sb-pinterest" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=4869539652300607236&amp;target=pinterest" target="_blank" title="Share to Pinterest"><span class="share-button-link-text">Share to Pinterest</span></a>
+</div>
+</div>
+<div class="post-footer-line post-footer-line-2"><span class="post-labels">
+</span>
+</div>
+<div class="post-footer-line post-footer-line-3"><span class="post-location">
+</span>
+</div>
+</div>
+</div><div class="post hentry">
+<a name="1047441699704679071"></a>
+<h3 class="post-title entry-title">
+<a href="https://pythoninsider.blogspot.com/2023/02/python-3112-python-31010-and-3120-alpha.html">Python 3.11.2, Python 3.10.10 and 3.12.0 alpha 5 are available</a>
+</h3>
+<div class="post-header">
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content">
+<p><span style="font-family: inherit;">Hi everyone,</span></p><p><span style="font-family: inherit;">I am happy to report that after solving some last-time problems we have a bunch of fresh releases for you!</span></p><h3 style="text-align: left;"><span style="font-family: inherit;">Python 3.12.0 alpha 5</span></h3><p><span style="font-family: inherit;">Check the new alpha of 3.12 with some Star Trek vibes:</span></p><p><a href="https://www.python.org/downloads/release/python-3120a5/"><span style="font-family: inherit;">https://www.python.org/downloads/release/python-3120a5/</span></a></p><p><i><span style="font-family: inherit;">210 new commits since 3.12.0a4 last month</span></i></p><p><span style="font-family: inherit;"><br/></span></p><h3 style="text-align: left;"><span style="font-family: inherit;">Python 3.11.2</span></h3><p><span style="font-family: inherit;">A shipment of bugfixes and security releases for the newest Python!</span></p><p><a href="https://www.python.org/downloads/release/python-3112/"><span style="font-family: inherit;">https://www.python.org/downloads/release/python-3112/</span></a></p><p><i><span style="font-family: inherit;">194 new commits since 3.11.1</span></i></p><p><span style="font-family: inherit;"><br/></span></p><h3 style="text-align: left;"><span style="font-family: inherit;">Python 3.10.10</span></h3><p><span style="font-family: inherit;">Your trusty Python3.10 just got more stable and secure!</span></p><p><a href="https://www.python.org/downloads/release/python-31010/"><span style="font-family: inherit;">https://www.python.org/downloads/release/python-31010/</span></a></p><p><i><span style="font-family: inherit;">131 new commits since 3.10.9</span></i></p><p><br/></p><h2 style="caret-color: rgb(17, 17, 17); color: #111111; font-family: Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: 1em; margin: 0px; position: relative;">We hope you enjoy the new releases!</h2><h3><p style="caret-color: rgb(17, 17, 17); color: #111111; font-family: Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: 13px; font-weight: 400;">Thanks to all of the many volunteers who help make Python Development and these releases possible! Please consider supporting our efforts by volunteering yourself or through organization contributions to the Python Software Foundation.</p><p style="caret-color: rgb(17, 17, 17); color: #111111; font-family: Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: 13px; font-weight: 400;"><a href="https://www.python.org/psf/" style="color: #333344;">https://www.python.org/psf/ </a><br/></p><p style="caret-color: rgb(17, 17, 17); color: #111111; font-family: Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: 13px; font-weight: 400;">Your friendly release team,</p><p style="caret-color: rgb(17, 17, 17); color: #111111; font-family: Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: 13px; font-weight: 400;">Ned Deily <a class="mention" href="https://discuss.python.org/u/nad" style="color: #333344;">@nad</a><br/>Steve Dower <a class="mention" href="https://discuss.python.org/u/steve.dower" style="color: #333344;">@steve.dower</a><br/>Pablo Galindo Salgado <a class="mention" href="https://discuss.python.org/u/pablogsal" style="color: #333344;">@pablogsal</a><br/>Łukasz Langa <a class="mention" href="https://discuss.python.org/u/ambv" style="color: #333344;">@ambv</a><br/>Thomas Wouters <a class="mention" href="https://discuss.python.org/u/thomas" style="color: #333344;">@thomas</a></p></h3>
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1"><span class="post-author vcard">
+Posted by
+<span class="fn">Pablo Galindo</span>
+</span>
+<span class="post-timestamp">
+at
+<a class="timestamp-link" href="https://pythoninsider.blogspot.com/2023/02/python-3112-python-31010-and-3120-alpha.html" rel="bookmark" title="permanent link"><abbr class="published" title="2023-02-08T09:31:00-05:00">9:31 AM</abbr></a>
+</span>
+<span class="post-comment-link">
+</span>
+<span class="post-icons">
+</span>
+<div class="post-share-buttons">
+<a class="goog-inline-block share-button sb-email" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=1047441699704679071&amp;target=email" target="_blank" title="Email This"><span class="share-button-link-text">Email This</span></a><a class="goog-inline-block share-button sb-blog" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=1047441699704679071&amp;target=blog" onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target="_blank" title="BlogThis!"><span class="share-button-link-text">BlogThis!</span></a><a class="goog-inline-block share-button sb-twitter" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=1047441699704679071&amp;target=twitter" target="_blank" title="Share to Twitter"><span class="share-button-link-text">Share to Twitter</span></a><a class="goog-inline-block share-button sb-facebook" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=1047441699704679071&amp;target=facebook" onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target="_blank" title="Share to Facebook"><span class="share-button-link-text">Share to Facebook</span></a><a class="goog-inline-block share-button sb-pinterest" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=1047441699704679071&amp;target=pinterest" target="_blank" title="Share to Pinterest"><span class="share-button-link-text">Share to Pinterest</span></a>
+</div>
+</div>
+<div class="post-footer-line post-footer-line-2"><span class="post-labels">
+</span>
+</div>
+<div class="post-footer-line post-footer-line-3"><span class="post-location">
+</span>
+</div>
+</div>
+</div><div class="post hentry">
+<a name="5970252868131555575"></a>
+<h3 class="post-title entry-title">
+<a href="https://pythoninsider.blogspot.com/2023/01/python-3120-alpha-4-released.html">Python 3.12.0 alpha 4 released</a>
+</h3>
+<div class="post-header">
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content">
+<p>I'm pleased to announce the release of Python 3.12 alpha 4.</p><p><a href="https://www.python.org/downloads/release/python-3120a4/">https://www.python.org/downloads/release/python-3120a4/</a></p><div><b>This is an early developer preview of Python 3.12.</b></div><div><b><br/></b></div><h1>Major new features of the 3.12 series, compared to 3.11</h1><div><div><br/></div><div>Python 3.12 is still in development. This release, 3.12.0a4 is the fourth of seven planned alpha releases.</div><div><br/></div><div>Alpha releases are intended to make it easier to test the current state of new features and bug fixes and to test the release process.</div><div><br/></div><div>During the alpha phase, features may be added up until the start of the beta phase (2023-05-08) and, if necessary, may be modified or deleted up until the release candidate phase (2023-07-31). Please keep in mind that this is a preview release and its use is <b>not </b>recommended for production environments.</div><div><br/></div><div>Many new features for Python 3.12 are still being planned and written. Among the new major new features and changes so far:</div><div><ul><li>Even more improved error messages. More exceptions potentially caused by typos now make suggestions to the user.</li><li>Support for the Linux <span style="font-family: courier;">perf</span> profiler to report Python function names in traces.</li><li>The deprecated <span style="font-family: courier;">wstr</span> and <span style="font-family: courier;">wstr_length</span> members of the C implementation of unicode objects were removed, per <a href="https://peps.python.org/pep-0623/">PEP 623</a>.</li><li>In the <span style="font-family: courier;">unittest</span> module, a number of long deprecated methods and classes were removed. (They had been deprecated since Python 3.1 or 3.2).</li><li>The deprecated <span style="font-family: courier;">smtpd</span> and <span style="font-family: courier;">distutils</span> modules have been removed (see <a href="https://peps.python.org/pep-0594/">PEP 594</a> and <a href="https://peps.python.org/pep-0632/">PEP 632</a>). The <span style="font-family: courier;">setuptools</span> package (installed by default in virtualenvs and many other places) continues to provide the <span style="font-family: courier;">distutils</span> module.</li><li>A number of other old, broken and deprecated functions, classes and methods have been removed.</li><li><span style="font-size: x-small;">(Hey, <b>fellow core developer</b>, if a feature you find important is missing from this list, <a href="mailto:thomas@python.org">let Thomas know</a>.)</span></li></ul></div></div><div><div><br/></div><div>For more details on the changes in Python 3.12, see <a href="https://docs.python.org/dev/whatsnew/3.12.html">What's New In Python 3.12</a>. The next pre-release of Python 3.12 will be 3.12.0a4, currently scheduled for 2023-02-06.</div><div><br/></div><h1>More resources</h1><div><br/></div><div><ul><li><a href="https://docs.python.org/3.12/">Online Documentation</a></li><li><a href="https://www.python.org/dev/peps/pep-0693/">PEP 693</a>, the 3.12 Release Schedule</li><li>Report bugs at <a href="https://github.com/python/cpython/issues">https://github.com/python/cpython/issues</a>.</li><li><a href="https://www.python.org/psf/donations/">Help fund Python and its community</a>.</li></ul></div><div><h1><br/></h1><h1>And now for something completely different</h1></div></div><div><div><br/></div><div>Two haikus apt, as Python's development springs ever forward.</div><div><br/></div><div></div><blockquote><div>I write, erase, rewrite</div><div>Erase again, and then</div><div>A poppy blooms.</div><div></div></blockquote><div><br/></div><div>Haiku by Katsushika Hokusai.</div><div><br/></div><div></div><blockquote><div>O snail</div><div>Climb Mount Fuji,</div><div>But slowly, slowly!</div><div></div></blockquote><div><br/></div><div>Haiku by Kobayashi Issa.</div></div><blockquote><div></div></blockquote><div><h1><br/></h1><h1>Enjoy the new releases</h1><div><br/></div><div><br/></div><div>Thanks to all of the many volunteers who help make Python Development and these releases possible! Please consider supporting our efforts by volunteering yourself or through organization contributions to the Python Software Foundation.</div><div><br/></div><div><a href="https://www.python.org/psf/">https://www.python.org/psf/</a></div><div><br/></div><div>Your release team,</div><div>Thomas Wouters</div><div>Ned Deily</div><div>Steve Dower</div></div><div><br/></div>
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1"><span class="post-author vcard">
+Posted by
+<span class="fn">Thomas Wouters</span>
+</span>
+<span class="post-timestamp">
+at
+<a class="timestamp-link" href="https://pythoninsider.blogspot.com/2023/01/python-3120-alpha-4-released.html" rel="bookmark" title="permanent link"><abbr class="published" title="2023-01-10T15:24:00-05:00">3:24 PM</abbr></a>
+</span>
+<span class="post-comment-link">
+</span>
+<span class="post-icons">
+</span>
+<div class="post-share-buttons">
+<a class="goog-inline-block share-button sb-email" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5970252868131555575&amp;target=email" target="_blank" title="Email This"><span class="share-button-link-text">Email This</span></a><a class="goog-inline-block share-button sb-blog" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5970252868131555575&amp;target=blog" onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target="_blank" title="BlogThis!"><span class="share-button-link-text">BlogThis!</span></a><a class="goog-inline-block share-button sb-twitter" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5970252868131555575&amp;target=twitter" target="_blank" title="Share to Twitter"><span class="share-button-link-text">Share to Twitter</span></a><a class="goog-inline-block share-button sb-facebook" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5970252868131555575&amp;target=facebook" onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target="_blank" title="Share to Facebook"><span class="share-button-link-text">Share to Facebook</span></a><a class="goog-inline-block share-button sb-pinterest" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5970252868131555575&amp;target=pinterest" target="_blank" title="Share to Pinterest"><span class="share-button-link-text">Share to Pinterest</span></a>
+</div>
+</div>
+<div class="post-footer-line post-footer-line-2"><span class="post-labels">
+</span>
+</div>
+<div class="post-footer-line post-footer-line-3"><span class="post-location">
+</span>
+</div>
+</div>
+</div><div class="post hentry">
+<a name="5901668292471982527"></a>
+<h3 class="post-title entry-title">
+<a href="https://pythoninsider.blogspot.com/2022/12/python-3111-3109-3916-3816-3716-and.html"> Python 3.11.1, 3.10.9, 3.9.16, 3.8.16, 3.7.16, and 3.12.0 alpha 3 are now available </a>
+</h3>
+<div class="post-header">
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content">
+<p>Greetings! We bring you a slew of releases this fine Saint Nicholas /
+ Sinterklaas day. Six simultaneous releases has got to be some record. 
+There’s one more record we broke this time, you’ll see below.</p>
+<p>In any case, updating is recommended due to security content:</p>
+<ul><li>3.7 - 3.12: <a href="https://github.com/python/cpython/issues/98739">gh-98739</a>: Updated bundled libexpat to 2.5.0 to fix <a href="https://nvd.nist.gov/vuln/detail/CVE-2022-43680">CVE-2022-43680</a> (heap use-after-free).</li><li>3.7 - 3.12: <a href="https://github.com/python/cpython/issues/98433">gh-98433</a>: The IDNA codec decoder used on DNS hostnames by <code>socket</code> or <code>asyncio</code> related name resolution functions no longer involves a quadratic algorithm to fix <a href="https://nvd.nist.gov/vuln/detail/CVE-2022-45061">CVE-2022-45061</a>.
+ This prevents a potential CPU denial of service if an out-of-spec 
+excessive length hostname involving bidirectional characters were 
+decoded. Some protocols such as <code>urllib</code> http 3xx redirects potentially allow for an attacker to supply such a name.</li><li>3.7 - 3.12: <a href="https://github.com/python/cpython/issues/100001">gh-100001</a>: <code>python -m http.server</code> no longer allows terminal control characters sent within a garbage request to be printed to the stderr server log.</li><li>3.8 - 3.12: <a href="https://github.com/python/cpython/issues/87604">gh-87604</a>: Avoid publishing list of active per-interpreter audit hooks via the <code>gc</code> module.</li><li>3.9 - 3.10 (already released in 3.11+ before): <a href="https://github.com/python/cpython/issues/97514">gh-97514</a>: On Linux the <code>multiprocessing</code>
+ module returns to using filesystem backed unix domain sockets for 
+communication with the forkserver process instead of the Linux abstract 
+socket namespace. Only code that chooses to use the “forkserver” start 
+method is affected. This prevents Linux <a href="https://nvd.nist.gov/vuln/detail/CVE-2022-42919">CVE-2022-42919</a>
+ (potential privilege escalation) as abstract sockets have no 
+permissions and could allow any user on the system in the same network 
+namespace (often the whole system) to inject code into the <code>multiprocessing</code>
+ forkserver process. This was a potential privilege escalation. 
+Filesystem based socket permissions restrict this to the forkserver 
+process user as was the default in Python 3.8 and earlier.</li><li>3.7 - 3.10: <a href="https://github.com/python/cpython/issues/98517">gh-98517</a>: Port XKCP’s fix for the buffer overflows in SHA-3 to fix <a href="https://nvd.nist.gov/vuln/detail/CVE-2022-37454">CVE-2022-37454</a>.</li><li>3.7 - 3.9 (already released in 3.10+ before): <a href="https://github.com/python/cpython/issues/68966">gh-68966</a>:
+ The deprecated mailcap module now refuses to inject unsafe text 
+(filenames, MIME types, parameters) into shell commands to address <a href="https://nvd.nist.gov/vuln/detail/CVE-2015-20107">CVE-2015-20107</a>. Instead of using such text, it will warn and act as if a match was not found (or for test commands, as if the test failed).</li></ul>
+<h3>
+<a class="anchor" href="https://discuss.python.org/t/python-3-11-1-3-10-9-3-9-16-3-8-16-3-7-16-and-3-12-0-alpha-3-are-now-available/21724#python-3120-alpha-3-1" name="python-3120-alpha-3-1"></a>Python 3.12.0 alpha 3</h3>
+<p>Get it here, read the change log, sing a GPT-3-generated Sinterklaas song:</p><p><a href="https://www.python.org/downloads/release/python-3120a3/">https://www.python.org/downloads/release/python-3120a3/</a> <br/></p><p>216 new commits since 3.12.0 alpha 2 last month.</p>
+<h3>
+<a class="anchor" href="https://discuss.python.org/t/python-3-11-1-3-10-9-3-9-16-3-8-16-3-7-16-and-3-12-0-alpha-3-are-now-available/21724#python-3111-2" name="python-3111-2"></a>Python 3.11.1</h3>
+<p>Get it here, see the change log, read the recipe for quark soup:</p><p><a href="https://www.python.org/downloads/release/python-3111/">https://www.python.org/downloads/release/python-3111/</a> <br/></p><p><strong>A whopping 495 new commits since 3.11.0.</strong> This is a 
+massive increase of changes comparing to 3.10 at the same stage in the 
+release cycle: there were “only” 339 commits between 3.10.0 and 3.10.1.</p>
+<h3>
+<a class="anchor" href="https://discuss.python.org/t/python-3-11-1-3-10-9-3-9-16-3-8-16-3-7-16-and-3-12-0-alpha-3-are-now-available/21724#python-3109-3" name="python-3109-3"></a>Python 3.10.9</h3>
+<p>Get it here, read the change log, see circular patterns:</p><p><a href="https://www.python.org/downloads/release/python-3109/">https://www.python.org/downloads/release/python-3109/</a> <br/></p><p>165 new commits.</p>
+<h3>
+<a class="anchor" href="https://discuss.python.org/t/python-3-11-1-3-10-9-3-9-16-3-8-16-3-7-16-and-3-12-0-alpha-3-are-now-available/21724#python-3916-4" name="python-3916-4"></a>Python 3.9.16</h3>
+<p>Get it here, read the change log, consider upgrading to a newer version:</p><p><a href="https://www.python.org/downloads/release/python-3916/">https://www.python.org/downloads/release/python-3916/</a> <br/></p><p>Security-only release with no binaries. 10 commits.</p>
+<h3>
+<a class="anchor" href="https://discuss.python.org/t/python-3-11-1-3-10-9-3-9-16-3-8-16-3-7-16-and-3-12-0-alpha-3-are-now-available/21724#python-3816-5" name="python-3816-5"></a>Python 3.8.16</h3>
+<p>Get it here, see the change log, definitely upgrade to a newer version:</p><p><a href="https://www.python.org/downloads/release/python-3816/">https://www.python.org/downloads/release/python-3816/</a> <br/></p><p>Security-only release with no binaries. 9 commits.</p>
+<h3>
+<a class="anchor" href="https://discuss.python.org/t/python-3-11-1-3-10-9-3-9-16-3-8-16-3-7-16-and-3-12-0-alpha-3-are-now-available/21724#python-3716-6" name="python-3716-6"></a>Python 3.7.16</h3>
+<p>Get it here, read the change log, check <a href="https://peps.python.org/pep-0537/">PEP 537 </a> to confirm EOL is coming to this version in June 2023:</p><p><a href="https://www.python.org/downloads/release/python-3716/">https://www.python.org/downloads/release/python-3716/</a> <br/></p><p>Security-only release with no binaries. 8 commits.</p>
+<h2>
+<a class="anchor" href="https://discuss.python.org/t/python-3-11-1-3-10-9-3-9-16-3-8-16-3-7-16-and-3-12-0-alpha-3-are-now-available/21724#we-hope-you-enjoy-the-new-releases-7" name="we-hope-you-enjoy-the-new-releases-7"></a>We hope you enjoy the new releases!</h2>
+<p>Thanks to all of the many volunteers who help make Python Development
+ and these releases possible! Please consider supporting our efforts by 
+volunteering yourself or through organization contributions to the 
+Python Software Foundation.</p><p><a href="https://www.python.org/psf/">https://www.python.org/psf/ </a><br/></p><p>Your friendly release team,</p>
+<p>Ned Deily <a class="mention" href="https://discuss.python.org/u/nad">@nad</a><br/>
+Steve Dower <a class="mention" href="https://discuss.python.org/u/steve.dower">@steve.dower</a><br/>
+Pablo Galindo Salgado <a class="mention" href="https://discuss.python.org/u/pablogsal">@pablogsal</a><br/>
+Łukasz Langa <a class="mention" href="https://discuss.python.org/u/ambv">@ambv</a><br/>
+Thomas Wouters <a class="mention" href="https://discuss.python.org/u/thomas">@thomas</a></p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p>
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1"><span class="post-author vcard">
+Posted by
+<span class="fn">Łukasz Langa</span>
+</span>
+<span class="post-timestamp">
+at
+<a class="timestamp-link" href="https://pythoninsider.blogspot.com/2022/12/python-3111-3109-3916-3816-3716-and.html" rel="bookmark" title="permanent link"><abbr class="published" title="2022-12-06T17:58:00-05:00">5:58 PM</abbr></a>
+</span>
+<span class="post-comment-link">
+</span>
+<span class="post-icons">
+</span>
+<div class="post-share-buttons">
+<a class="goog-inline-block share-button sb-email" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5901668292471982527&amp;target=email" target="_blank" title="Email This"><span class="share-button-link-text">Email This</span></a><a class="goog-inline-block share-button sb-blog" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5901668292471982527&amp;target=blog" onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target="_blank" title="BlogThis!"><span class="share-button-link-text">BlogThis!</span></a><a class="goog-inline-block share-button sb-twitter" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5901668292471982527&amp;target=twitter" target="_blank" title="Share to Twitter"><span class="share-button-link-text">Share to Twitter</span></a><a class="goog-inline-block share-button sb-facebook" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5901668292471982527&amp;target=facebook" onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target="_blank" title="Share to Facebook"><span class="share-button-link-text">Share to Facebook</span></a><a class="goog-inline-block share-button sb-pinterest" href="https://www.blogger.com/share-post.g?blogID=3941553907430899163&amp;postID=5901668292471982527&amp;target=pinterest" target="_blank" title="Share to Pinterest"><span class="share-button-link-text">Share to Pinterest</span></a>
+</div>
+</div>
+<div class="post-footer-line post-footer-line-2"><span class="post-labels">
+</span>
+</div>
+<div class="post-footer-line post-footer-line-3"><span class="post-location">
+</span>
+</div>
+</div>
+</div>
