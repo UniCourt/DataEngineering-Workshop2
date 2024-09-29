@@ -1,21 +1,27 @@
-# Data Engineering Workshop 2
+# the employee directory contains the homework
 
-One Day workshop on understanding Django, RESTful APIs and creating Unit Testing for the APIs.
+# Django part 
+## 1. project -> django-admin startproject employee
+## 2. app -> python manage.py startapp members
+## 3. modify settings and migrate the changes
+## 4.modify models  ,makemigrations and migrate
+## 5. modify admin,createsuperuser
+## 6. modify view,url
 
-## What will you learn by the end of this workshop?
-- By the end of this workshop you will learn what is Django.
-- You will learn how to setup a Django project.
-- You will learn what are RESTful APIs
-- You will learn how to create Unit Tests to test these APIs.
+# docker
+## 1. create  2 services web service and postgre service
 
-## Schedule
-| Time          | Topics
-|---------------|-------
-| 09:00 - 10:00 |  [`Introduction to Django`](/docs/introduction_to_django.md)
-| 10:00 - 12:00 |  [`Creating a Django Project.`](/docs/creating_a_django_project.md)
-| 12:00 - 01:00 |  [`Updating the existing Dockerfiles to support Django Admin`](/docs/dockerizing_project.md)
-| 01:00 - 02:00 |  `Break`
-| 02:00 - 03:00 |  [`Introduction to RESTful APIs`](/docs/introduction_to_restful_api.md)
-| 03:00 - 04:30 |  [`Creating Unit Tests`](/docs/unit_test/creating_unit_tests.md)
-| 04:30 - 04:45 |  `Q & A`
-| 04:45 - 05:00 |  [`Wrapping Up`](/docs/workshop2_home_work.md)
+# database(postgresql)
+## docker exec -it psql-db sh -> executes the postgre service
+## psql -U postrges -> postgre cmd
+## CREATE DATABASE emp_db; -> creatign database
+# how to perform crud operations
+## 1.docker exec -it workshop_web_container sh ->executes the web service 
+
+## 2.inserting into the table -> CMD curl -X POST http://0.0.0.0:8000/members/rest/employee/ -d "first_name=vijeth&last_name=ferna&address=venor&emp_id=2&mobile=915263890&department=devops&salary=1000"
+
+## 3. reading the data -> curl -X GET http://0.0.0.0:8000/members/rest/employee/id/2
+
+## 4. updating the salary of employee -> curl -X PATCH http://0.0.0.0:8000/members/rest/employee/id/1 -H "Content-Type: application/json" -d '{"salary": 75000}'
+
+## 5. deleting operation curl -X DELETE http://0.0.0.0:8000/members/rest/employee/id/1
