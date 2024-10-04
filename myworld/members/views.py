@@ -42,3 +42,4 @@ class StudentView(View):
             mobile= request.POST.get('mobile'),
             branch= request.POST.get('branch'))
         return JsonResponse({'status': 'sucess'}, status=200)
+    

@@ -6,4 +6,4 @@ class DjStudentAdmin(admin.ModelAdmin):
     list_filter = ("branch",)
 
 # Register your models here.
-admin.site.register(Students, DjStudentAdmin)
+admin.site.register(Students, DjStudentAdmin) 

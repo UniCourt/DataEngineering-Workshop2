@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  web_service:
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/Dockerfile
+    image: workshop1_web
+    container_name: workshop_web_container
+    stdin_open: true
+    tty: true
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+
+  psql-db:
+    image: postgres:14
+    container_name: psql-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      PGPASSWORD: 123456
+    ports:
+      - '5446:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local
