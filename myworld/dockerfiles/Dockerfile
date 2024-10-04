@@ -7,7 +7,7 @@ RUN apk update && \
 # Install requirements
 RUN pip install --upgrade pip
 RUN pip install Django psycopg2==2.9.3
-# Create directories
+# Create directories  
 RUN mkdir -p /root/workspace/src
 COPY ./  /root/workspace/site
 # Switch to project directory
