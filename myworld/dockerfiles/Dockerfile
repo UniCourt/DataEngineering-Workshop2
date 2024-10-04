@@ -6,7 +6,7 @@ RUN apk update && \
     apk --no-cache add --virtual postgresql-deps libpq-dev
 # Install requirements
 RUN pip install --upgrade pip
-RUN pip install Django psycopg2==2.9.3
+RUN pip install Django psycopg2==2.9.3 requests
 # Create directories
 RUN mkdir -p /root/workspace/src
 COPY ./  /root/workspace/site
