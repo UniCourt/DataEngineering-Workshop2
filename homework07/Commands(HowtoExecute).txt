@@ -1,0 +1,23 @@
+run these commands inside root directory example-   (/home/raghu/workshop2/homework07/myworld/)
+
+
+create superuser
+python manage.py createsuperuser
+
+    
+    or use this password
+
+username:raghu7
+password:raghu96867
+
+
+
+now start the server
+
+sudo python3 manage.py runserver
+
+hostname=127.0.0.1:8000
+
+
+
+Type http://127.0.0.1:8000/admin/ in your web browser. Now you will be able to see a login page. Add your credentials and login. This will show you the database. C You may use the options present in the admin-site to perform the CRUD operation
