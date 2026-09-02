@@ -5,7 +5,7 @@ services:
     container_name: drill1_psql
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: wrongpass
+      POSTGRES_PASSWORD: "123456"
       POSTGRES_DB: drill1_db
     ports:
       - "5451:5432"
