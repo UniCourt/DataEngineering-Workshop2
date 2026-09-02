@@ -1,33 +1,30 @@
-"""
-Workshop scraper for https://blog.python.org/
-
-What this script does (beginner summary):
-1) Connects to the workshop Postgres database
-2) Clears old rows in members_blog (TRUNCATE ... CASCADE)
-3) Downloads the Python Insider homepage
-4) Finds each blog card (article.post-card)
-5) Reads title, author, and date/time
-6) Inserts each row into members_blog
-"""
-
 import psycopg2
 import requests
 from bs4 import BeautifulSoup
 
-# For the credentials mentioned below, you may refer the docker-compose.yml present in myworld .
+
 db_name = 'member_db'
 db_user = 'postgres'
 db_pass = '123456'
 db_host = 'psql-db'
 db_port = '5432'
 
-# This will create the connection the to postgres database.
-conn = psycopg2.connect(dbname=db_name, user=db_user, password=db_pass, host=db_host, port=db_port)
+
+conn = psycopg2.connect(
+    dbname=db_name,
+    user=db_user,
+    password=db_pass,
+    host=db_host,
+    port=db_port
+)
 
 
 def add_row_to_blog(title, author, date, time):
-    # This function will add the entry to database
-    sql = """INSERT INTO members_blog (title, release_date, blog_time, author, created_date) VALUES (%s, %s::DATE, %s::TIME, %s, NOW())"""
+    sql = """
+        INSERT INTO members_blog
+        (title, release_date, blog_time, author, created_date)
+        VALUES (%s, %s::DATE, %s::TIME, %s, NOW())
+    """
 
     with conn:
         with conn.cursor() as curs:
@@ -35,7 +32,6 @@ def add_row_to_blog(title, author, date, time):
 
 
 def truncate_table():
-    # This function will delete the existing entries from the database.
     with conn:
         with conn.cursor() as curs:
             curs.execute("TRUNCATE members_blog CASCADE;")
@@ -45,12 +41,11 @@ def start_extraction():
     print("Extraction started")
     url = "https://blog.python.org/"
 
-    # Each time when we add new entry we delete the existing entries.
     truncate_table()
+
     data = requests.get(url, timeout=30)
     page_soup = BeautifulSoup(data.text, 'html.parser')
 
-    # New Python Insider layout uses article cards (not the old div.date-outer posts).
     blogs = page_soup.select('article.post-card')
 
     for blog in blogs:
@@ -62,7 +57,6 @@ def start_extraction():
 
         time_node = blog.select_one('time')
         if time_node and time_node.get('datetime'):
-            # Example: 2026-06-23T00:00:00.000Z
             iso_value = time_node['datetime']
             date = iso_value[:10]
             time = iso_value[11:19] if len(iso_value) >= 19 else "00:00:00"
@@ -76,9 +70,7 @@ def start_extraction():
         print("Date:", date)
         print("Time:", time)
         print("Author:", author)
-        print(
-            "\n---------------------------------------------------------------------------------------------------------------\n"
-        )
+        print("\n----------------------------------------\n")
 
 
 if __name__ == "__main__":
