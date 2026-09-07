@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+myworld/db.sqlite3
+myworld/event_logs.txt
+.pytest_cache/
