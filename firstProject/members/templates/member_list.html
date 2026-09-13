@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Members</title>
+</head>
+
+<body>
+
+<h1>Our Members</h1>
+
+<ul>
+    {% for member in members %}
+        <li>
+            {{ member.name }} - {{ member.email }} - {{ member.age }}
+        </li>
+    {% empty %}
+        <li>No members found.</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

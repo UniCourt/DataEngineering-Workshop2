@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; background: #f7f7f9; }
+        h1 { margin-bottom: 0.25rem; }
+        p.sub { color: #666; margin-top: 0; }
+        table { border-collapse: collapse; width: 100%; background: #fff; }
+        th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
+        th { background: #333; color: #fff; }
+        tr:nth-child(even) { background: #fafafa; }
+    </style>
+</head>
+<body>
+    <h1>Employees</h1>
+    <p class="sub">Read-only view. For adding/editing use the API, or the Django admin at /admin/.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Emp ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Salary</th>
+                <th>Last Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.emp_id }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.department|default:"-" }}</td>
+                <td>{{ employee.salary }}</td>
+                <td>{{ employee.updated_at }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6">No employees yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

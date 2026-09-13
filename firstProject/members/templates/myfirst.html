@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Members</h1>
+
+<table border="1">
+    <tr>
+        <th>First Name</th>
+        <th>Phone Number</th>
+    </tr>
+
+    {% for member in members %}
+    <tr>
+        <td>{{ member.firstname }}</td>
+        <td>{{ member.phoneNum }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>
